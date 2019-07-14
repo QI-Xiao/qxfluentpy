@@ -17,5 +17,15 @@ def buildParseTree(fpexp):
             parent = pStack.pop()
             currentTree = parent
         elif i in ['+', '-', '*', '/']:
-            pass
+            currentTree.setRootVal(i)
+            currentTree.insertRight('')
+            pStack.push(currentTree)
+            currentTree = currentTree.getRightChild()
+        elif i == ')':
+            currentTree = pStack.pop()
+        else:
+            raise ValueError
+pt = buildParseTree("( ( 10 + 5 ) * 3 )")
+# pt.postorder() #defined and explained in the next section
+
 
